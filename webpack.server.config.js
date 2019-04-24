@@ -17,4 +17,14 @@ config.module.rules.push({
   }
 });
 
+// Don't start Animation on server
+config.module.rules.push({
+  test: /Animation\.js$/,
+  loader: 'string-replace-loader',
+  options: {
+    search: 'this._startLoop();',
+    replace: '// this._startLoop();',
+  }
+});
+
 module.exports = config;
